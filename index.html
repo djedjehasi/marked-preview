@@ -1,0 +1,74 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Marked-Preview</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="kokaneka">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="place-app"> </div>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js" integrity="sha512-tjg8I2d6Fi0OBGz1csmr7RfI4uupYaCfL/RqhVRTS42RMGwfBsjwBGmhzhI+e2dPmyew8cFkoxnVkGvADDLvbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  <script type="text/babel">
+
+class Editor extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            input: '# title'
+        }
+    }
+    handleChange = (event) => {
+        this.setState({
+            input: event.target.value
+        })
+    }
+
+    render() {
+        return(
+            <div>
+                <textarea name="editor" id="editor" value={this.state.input} onChange={this.handleChange} colmn="30" row="10">{this.state.input}</textarea>
+                <Previewer value={this.state.input} />
+            </div>
+        )
+    }
+}
+
+
+
+const Previewer = (props) => {
+
+    return (
+        <div>
+            <div id="preview">{marked.parse(props.value)}</div>
+        </div>
+    )
+        
+}
+
+
+
+
+
+var App = (props) => {
+    return (
+        <div >
+            <Editor />
+        </div>
+    );
+};
+
+ReactDOM.render(
+    App(),
+    document.getElementById('place-app')
+);
+  </script>
+</body>
+</html>
