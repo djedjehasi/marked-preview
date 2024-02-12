@@ -16,13 +16,17 @@
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.0/marked.min.js" integrity="sha512-tjg8I2d6Fi0OBGz1csmr7RfI4uupYaCfL/RqhVRTS42RMGwfBsjwBGmhzhI+e2dPmyew8cFkoxnVkGvADDLvbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-markdown/4.3.1/react-markdown.js" integrity="sha512-uVjoOKL4IHlUC7gc0LuPfhTqvJBi37Uff7EC3s4tXAZp0rgskDv40jgOIvv3ImoPFZyCwUtsQ4VQ1SRXKHyrXQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/babel">
+    
+
+let text = '# tittle \n## subtitle \nhttps://www.copycat.dev/ \n~~~css dfjkdfjgk ~~~' 
 
 class Editor extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            input: '# title'
+            input: text
         }
     }
     handleChange = (event) => {
@@ -30,7 +34,6 @@ class Editor extends React.Component{
             input: event.target.value
         })
     }
-
     render() {
         return(
             <div>
@@ -44,10 +47,9 @@ class Editor extends React.Component{
 
 
 const Previewer = (props) => {
-
     return (
-        <div>
-            <div id="preview">{marked.parse(props.value)}</div>
+        <div id="preview">
+            <ReactMarkdown>{props.value}</ReactMarkdown>
         </div>
     )
         
